@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:myapp/blocs/user/user_bloc.dart';
 import 'package:myapp/config/router.dart';
 import 'package:myapp/pages/home_page.dart';
 
@@ -29,7 +30,7 @@ class UsersPage extends StatelessWidget {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.only(top:10.0),
+        padding: const EdgeInsets.only(top: 10.0),
         child: Column(children: [
           const Center(child: Text('Users Page')),
           BlocBuilder<HomeBloc, HomeState>(
@@ -40,6 +41,14 @@ class UsersPage extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => HomePage()),
                 ),
                 child: const Text('Go to homepage'),
+              );
+            },
+          ),
+          BlocBuilder<UserBloc, UserState>(
+            builder: (context, state) {
+              return InkWell(
+                onTap: () => Navigator.pushNamed(context, USER_DETAIL_ROUTE),
+                child: const Text('User Detail Page'),
               );
             },
           )

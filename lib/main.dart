@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:myapp/blocs/food/food_bloc.dart';
 import 'package:myapp/blocs/food/search_bloc.dart';
+import 'package:myapp/blocs/user/user_bloc.dart';
 import 'package:myapp/config/router.dart';
 import 'package:myapp/config/theme.dart';
 import 'package:myapp/pages/home_page.dart';
@@ -49,6 +50,9 @@ class App extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => HomeBloc(repository: HomeRepository()),
+        ),
+        BlocProvider(
+          create: (context) => UserBloc(),
         ),
       ],
       child: MaterialApp(
