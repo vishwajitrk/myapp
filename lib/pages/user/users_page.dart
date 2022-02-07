@@ -28,20 +28,23 @@ class UsersPage extends StatelessWidget {
           )
         ],
       ),
-      body: Column(children: [
-        const Center(child: Text('Users Page')),
-        BlocBuilder<HomeBloc, HomeState>(
-          builder: (context, state) {
-            return InkWell(
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HomePage()),
-              ),
-              child: const Text('Go to homepage'),
-            );
-          },
-        )
-      ]),
+      body: Padding(
+        padding: const EdgeInsets.only(top:10.0),
+        child: Column(children: [
+          const Center(child: Text('Users Page')),
+          BlocBuilder<HomeBloc, HomeState>(
+            builder: (context, state) {
+              return InkWell(
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                ),
+                child: const Text('Go to homepage'),
+              );
+            },
+          )
+        ]),
+      ),
     );
   }
 }

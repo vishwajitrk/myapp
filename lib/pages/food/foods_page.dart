@@ -132,6 +132,7 @@ Widget buildFoodList(List<Recipe> recipes) {
       ListView.builder(
           itemCount: recipes.length,
           shrinkWrap: true,
+          physics: const ClampingScrollPhysics(),
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.all(10),
