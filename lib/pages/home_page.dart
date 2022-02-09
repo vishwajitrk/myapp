@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return _HomePageState();
@@ -10,6 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   IconData _searchIcon = Icons.search;
+  // ignore: unused_field
   late Widget _appBarTitle;
   late HomeBloc _homeBloc;
 
@@ -44,7 +47,7 @@ class _HomePageState extends State<HomePage> {
   void buildAppBarTitle() {
     setState(() {
       if (_searchIcon == Icons.search) {
-        _appBarTitle = Text("Home");
+        _appBarTitle = const Text("Home");
       } else {
         _appBarTitle = TextField(
           onChanged: (String inputValue) {
@@ -203,12 +206,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
 
   Stream<dynamic> fetchArticles({String filter = ""}) async* {
-    print(state.articles.length);
-    print(filter);
     List<dynamic> list = (state.articles.isNotEmpty)
         ? state.articles
         : await repository.getArticles();
-        print(list.length);
     if (filter.isNotEmpty) {
       for (var article in list) {
         if (article is String) {

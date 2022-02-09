@@ -41,7 +41,6 @@ class APIWeb {
     };
     final response = await http.post(resource.url!,
         body: jsonEncode(resource.body), headers: headers);
-        print(response.body);
     if (response.statusCode == 200) {
       return resource.parse!(response);
     } else {

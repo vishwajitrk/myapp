@@ -11,7 +11,6 @@ abstract class AFoodRepository {
 class FoodRepository extends AFoodRepository {
   @override
   Future<List<Recipe>> getFoods() async {
-    print('api call once');
     final response = await http.get(
         Uri.parse("https://forkify-api.herokuapp.com/api/search?q=pizza#"));
     if (response.statusCode == 200) {
@@ -26,7 +25,6 @@ class FoodRepository extends AFoodRepository {
 
   @override
   Future<List<Recipe>> searchFoods(String food) async {
-    print('api call $food');
     final response = await http.get(
         Uri.parse("https://forkify-api.herokuapp.com/api/search?q=$food"));
     if (response.statusCode == 200) {

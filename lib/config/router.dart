@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/models/food.dart';
+import 'package:myapp/models/user.dart';
 import 'package:myapp/pages/food/food_detail_page.dart';
 import 'package:myapp/pages/food/foods_page.dart';
+import 'package:myapp/pages/list_page.dart';
+import 'package:myapp/pages/splash_page.dart';
 import 'package:myapp/pages/user/add_user_page.dart';
 import 'package:myapp/pages/user/edit_user_page.dart';
 import 'package:myapp/pages/user/user_detail_page.dart';
@@ -19,25 +22,32 @@ const String USER_DETAIL_ROUTE = '/user-detail';
 const String FOODS_ROUTE = '/foods';
 // ignore: constant_identifier_names
 const String FOOD_DETAIL_ROUTE = '/food-detail';
+// ignore: constant_identifier_names
+const String LIST_ROUTE = '/list-page';
 
 class AppRouter {
   Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/':
-        return MaterialPageRoute(builder: (_) => const UsersPage());
+        return MaterialPageRoute(builder: (_) => const SplashPage());
       case USERS_ROUTE:
         return MaterialPageRoute(builder: (_) => const UsersPage());
       case ADD_USER_ROUTE:
-        return MaterialPageRoute(builder: (_) => const AddUserPage());
+        return MaterialPageRoute(builder: (_) =>  AddUserPage());
       case EDIT_USER_ROUTE:
-        return MaterialPageRoute(builder: (_) => const EditUserPage());
-        case USER_DETAIL_ROUTE:
-        return MaterialPageRoute(builder: (_) => const UserDetailPage());
+        final user = settings.arguments as User;
+        return MaterialPageRoute(builder: (_) => EditUserPage(user: user));
+      case USER_DETAIL_ROUTE:
+        final id = settings.arguments as int;
+        return MaterialPageRoute(builder: (_) => UserDetailPage(id: id));
       case FOODS_ROUTE:
         return MaterialPageRoute(builder: (_) => const FoodsPage());
-        case FOOD_DETAIL_ROUTE:
+      case FOOD_DETAIL_ROUTE:
         final recipe = settings.arguments as Recipe;
-        return MaterialPageRoute(builder: (_) => FoodDetailPage(recipe: recipe));
+        return MaterialPageRoute(
+            builder: (_) => FoodDetailPage(recipe: recipe));
+      case LIST_ROUTE:
+        return MaterialPageRoute(builder: (_) => const ListPage());
       default:
         return null;
     }
